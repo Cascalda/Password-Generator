@@ -1,9 +1,10 @@
 """Tests password_generation.py."""
 
 import random
+
 import pytest
 
-from constants import MIN_LENGTH, MAX_LENGTH, WORDS
+from constants import MAX_LENGTH, MIN_LENGTH, WORDS
 from password_generation import validate_length
 
 
