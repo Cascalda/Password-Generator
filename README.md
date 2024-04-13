@@ -37,11 +37,11 @@ Contains:
 #### [**Constants**](constants.py)
 - Contains all the CONSTANTS that I've factored out to use across multiple files.
 
-**Exception:**
+#### [**Exceptions:**](exceptions.py)
 - `QuitCommand`, meant to signal that the user wants to quit the program.
-- `InvalidInputError`, meant to signal that the user has inputted an invalid value.
-    - `InvalidLengthError`, meant to signal that the user has inputted an invalid length.
-    - `InvalidTypeError`, meant to signal that the user has inputted an invalid type.
+- `InvalidInputError`, meant to signal that an input has an invalid value.
+    - `InvalidLengthError`, meant to signal that an input has an invalid length.
+    - `InvalidTypeError`, meant to signal that an input has an invalid type.
 
 #### [**Tests**](test_password_generation.py)
 - Contains some tests, not fully comprehensive as I do not know how to test password generation.
