@@ -3,7 +3,7 @@
 ### Description
 A simple terminal-based password generator that gives you a fair bit of customisation. You can also make a passphrase with this one.
 
-**Getting Started**
+### Getting Started
 To get started, run [`project.py`](project.py)
 
 ### Contains
