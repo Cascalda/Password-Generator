@@ -1,6 +1,8 @@
 """Interface to generate passwords."""
 
-from password_generation import QuitCommand, my_input, get_access_key
+from exceptions import QuitCommand
+
+from password_generation import my_input, get_access_key
 
 
 def main():
