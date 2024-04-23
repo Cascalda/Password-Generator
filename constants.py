@@ -4,6 +4,9 @@ import string
 
 from english_words import get_english_words_set
 
+QUIT_COMMANDS = ["quit", "q", "exit", "e"]
+
+
 MIN_LENGTH: int = 6
 MAX_LENGTH: int = 15
 RANGE_LENGTH: tuple[int, int] = (MIN_LENGTH, MAX_LENGTH)

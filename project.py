@@ -1,14 +1,14 @@
 """Interface to generate passwords."""
 
+from constants import QUIT_COMMANDS
 from exceptions import QuitCommand
-
-from password_generation import my_input, get_access_key
+from password_generation import get_access_key, my_input
 
 
 def main():
     """Interface to control all other functions."""
-    print("\nHello, and welcome to the Password Generator! 🔑")
-    print(">>> Press 'quit' or 'exit' to exit the program at any point in time!")
+    print(r"\nHello, and welcome to the Password Generator! 🔑")
+    print(f">>> To quit at any point, type one of these: {', '.join(QUIT_COMMANDS)}")
     print()
 
     while True:

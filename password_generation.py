@@ -10,6 +10,7 @@ from constants import (
     RANDOM_CAPS_DISPLAY,
     RANGE_PASSPHRASE_WORDS,
     RANGE_PASSWORD_CHAR,
+    QUIT_COMMANDS,
     WORDS,
 )
 from exceptions import (
@@ -27,11 +28,8 @@ def handle_quit(func):
     def wrapper(*args, **kwargs):
         command = func(*args, **kwargs).lower().strip()
 
-        quit_commands = ["quit", "exit"]
-        if command in quit_commands:
+        if command in QUIT_COMMANDS:
             raise QuitCommand
-
-        return command
 
     return wrapper
 
@@ -49,7 +47,6 @@ def validate_length(length_input: str, min_length: int, max_length: int) -> int:
         raise InvalidTypeError
 
     length = int(length_input)
-
     if length < min_length or length > max_length:
         raise InvalidLengthError
 
