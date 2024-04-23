@@ -1,9 +1,12 @@
 ## CS50 Final Project: Password Generator
 
-### Description:
+### Description
 A simple terminal-based password generator that gives you a fair bit of customisation. You can also make a passphrase with this one.
 
-### Contains:
+### Getting Started
+To get started, run [`project.py`](project.py)
+
+### Contains
 #### [**Interface**](project.py)
 Where you can call the password generators, to provide a password/passphrase for your use.
 
@@ -17,7 +20,6 @@ Functions grouped according to their categories.
 - Contains the `handle_quit` wrapper for built-in function `input()` via `my_input()` self-declared function. Used to raise `QuitCommand` custom Exception.
 
 **Helper functions:**
-Contains:
 - `validate_length`: Provide simple input validation for password/passphrase length for `get_valid_length`.
 - `get_valid_length`: Gets the valid length from the user according to `access_key_range` variable.
 - `get_character_pool`: Asks the user for characters to include in their password and include them into the character pool.
@@ -26,7 +28,6 @@ Contains:
 - `randomly_capitalise`: Randomly capitalises each word according to `get_random_uppercase_flag`.
 
 **Main functions:**
-Contains:
 - `generate_password`: Prompts the user for features to include in their password and provides them with one.
 - `generate_passphrase`: Prompts the user for features to include in their passphrase and provides them with one.
 - `get_access_key`: Prompts the user to choose between generating a password and a passphrase.
