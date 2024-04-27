@@ -21,26 +21,16 @@ from exceptions import (
 )
 
 
-# ===== Wrappers =====
-def handle_quit(func):
-    """Wrapper for input() that exits when user gives the right commands."""
-
-    def wrapper(*args, **kwargs):
-        command = func(*args, **kwargs).lower().strip()
-
-        if command in QUIT_COMMANDS:
-            raise QuitCommand
-
-    return wrapper
-
-
-@handle_quit
+# ===== Helper Functions =====
 def my_input(prompt="") -> str:
     """Exits when user gives the right commands."""
-    return input(prompt)
+    command = input(prompt).lower().strip()
+    if command in QUIT_COMMANDS:
+        raise QuitCommand
+
+    return command
 
 
-# ===== Helper Functions =====
 def validate_length(length_input: str, min_length: int, max_length: int) -> int:
     """Validates the length provided."""
     if not length_input.isdigit():
@@ -190,15 +180,15 @@ def generate_passphrase() -> str:
 
 def get_access_key() -> str:
     """Chooses the type of access key the user wants."""
-    print(
-        """
+    print("""
           Type 'p' for password or 'ph' for passphrase.
-          """
-    )
+        """)
 
     while True:
         # Prompt "password" instead of "access key" as "password" is more colloquial
-        flag = my_input("\nPassword or Passphrase: ").lower()
+        # flag = my_input("\nPassword or Passphrase: ").lower()
+        flag = my_input("\nPassword or Passphrase: ")
+        print("flag: ", flag)
         match = {
             "p": generate_password,
             "ph": generate_passphrase,
@@ -206,7 +196,7 @@ def get_access_key() -> str:
         generator = match.get(flag, None)
 
         if generator is None:
-            print("Only 'password' or 'passphrase' are accepted.")
+            print("Only 'p' or 'ph' are accepted.")
         else:
             access_key = generator()
             return access_key
@@ -216,7 +206,9 @@ def get_access_key() -> str:
 def main():
     """Interface to control all other functions."""
     print("\nHello, and welcome to the Password Generator! 🔑")
-    print(">>> Press 'quit' or 'exit' to exit the program at any point in time!")
+    print(
+        f">>> To quit at any point, type: {", ".join(f'"{command}"' for command in QUIT_COMMANDS)}"
+    )
     print()
 
     while True:
@@ -225,13 +217,17 @@ def main():
             print(f"\nThis is your password: {access_key}")
 
             if my_input("\nGenerate another? (y/n) ").lower() != "y":
-                break
+                raise QuitCommand
 
         except QuitCommand as e:
             print(f"\n{e}")
             break
 
     print("\nHave a nice day ahead! 😄")
+
+
+if __name__ == "__main__":
+    main()
 
 
 if __name__ == "__main__":

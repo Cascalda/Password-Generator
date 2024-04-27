@@ -7,8 +7,10 @@ from password_generation import get_access_key, my_input
 
 def main():
     """Interface to control all other functions."""
-    print(r"\nHello, and welcome to the Password Generator! 🔑")
-    print(f">>> To quit at any point, type one of these: {', '.join(QUIT_COMMANDS)}")
+    print("\nHello, and welcome to the Password Generator! 🔑")
+    print(
+        f">>> To quit at any point, type: {", ".join(f'"{command}"' for command in QUIT_COMMANDS)}"
+    )
     print()
 
     while True:
@@ -17,7 +19,7 @@ def main():
             print(f"\nThis is your password: {access_key}")
 
             if my_input("\nGenerate another? (y/n) ").lower() != "y":
-                break
+                raise QuitCommand
 
         except QuitCommand as e:
             print(f"\n{e}")
