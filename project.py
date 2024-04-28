@@ -6,7 +6,14 @@ from password_generation import get_access_key, my_input
 
 
 def main():
-    """Interface to control all other functions."""
+    """Interface to control all other functions.
+
+    Serves as the main entry-point to the program. It presents a welcome message,
+    provides instructions on how to quit, and enters loop where it generates passwords
+    and prompts the user to generate another. The loop continues until the user chooses
+    to quit the program.
+    """
+
     print("\nHello, and welcome to the Password Generator! 🔑")
     print(
         f">>> To quit at any point, type: {", ".join(f'"{command}"' for command in QUIT_COMMANDS)}"

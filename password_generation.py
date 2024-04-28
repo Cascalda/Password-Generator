@@ -24,6 +24,7 @@ from exceptions import (
 # ===== Helper Functions =====
 def my_input(prompt="") -> str:
     """Exits when user gives the right commands."""
+
     command = input(prompt).lower().strip()
     if command in QUIT_COMMANDS:
         raise QuitCommand
@@ -31,27 +32,26 @@ def my_input(prompt="") -> str:
     return command
 
 
-def validate_length(length_input: str, min_length: int, max_length: int) -> int:
+def validate_length(length: str, min_length: int, max_length: int) -> int:
     """Validates the length provided."""
-    if not length_input.isdigit():
+
+    if not length.isdigit():
         raise InvalidTypeError
 
-    length = int(length_input)
-    if length < min_length or length > max_length:
+    if int(length) < min_length or int(length) > max_length:
         raise InvalidLengthError
 
-    return length
+    return True
 
 
 def get_valid_length(access_key_range: tuple[int, int]) -> int:
     """Obtain a valid length from the user."""
+
     min_length, max_length = access_key_range
 
-    print(
-        f"""
+    print(f"""
           Length must be between {min_length} and {max_length}.
-        """
-    )
+        """)
 
     morpheme_type = {
         "generate_password": "character",
@@ -64,7 +64,8 @@ def get_valid_length(access_key_range: tuple[int, int]) -> int:
 
         try:
             length = my_input(f"\nEnter length of {morpheme}s: ")
-            return validate_length(length, min_length, max_length)
+            if validate_length(length, min_length, max_length):
+                return int(length)
 
         except InvalidInputError as e:
             print(e)
@@ -73,15 +74,15 @@ def get_valid_length(access_key_range: tuple[int, int]) -> int:
 
 def get_character_pool() -> set[str]:
     """Get character pool(s) to include from the user."""
-    flags_included = set()
+
+    flags_included: set[str] = set()
 
     while not flags_included:
-        print(
-            """
+        print("""
             Press 'y' if u wish to include the following, skipping otherwise:
             - At least 1 condition is required.
-        """
-        )
+        """)
+
         for flag in CHARACTERS:
             include_flag = my_input(f">>> Include {flag}? ").lower() == "y"
             if include_flag:
@@ -107,6 +108,7 @@ def get_separator() -> str:
 
 def get_random_uppercase_flag() -> str:
     """Get random capitalisation choice from the user."""
+
     print(
         f"""
         Choose a random capitalisation option:
@@ -155,6 +157,7 @@ def randomly_capitalise(word: str, flag: str) -> str:
 # ===== Main Functions =====
 def generate_password() -> str:
     """Generates a secure password."""
+
     length = get_valid_length(RANGE_PASSWORD_CHAR)
     included_flags = get_character_pool()
 
@@ -166,6 +169,7 @@ def generate_password() -> str:
 
 def generate_passphrase() -> str:
     """Generates a secure passphrase."""
+
     length = get_valid_length(RANGE_PASSPHRASE_WORDS)
     separator = get_separator()
     random_uppercase_choice = get_random_uppercase_flag()
@@ -180,6 +184,7 @@ def generate_passphrase() -> str:
 
 def get_access_key() -> str:
     """Chooses the type of access key the user wants."""
+
     print("""
           Type 'p' for password or 'ph' for passphrase.
         """)
@@ -204,7 +209,14 @@ def get_access_key() -> str:
 
 # ===== Entry Point =====
 def main():
-    """Interface to control all other functions."""
+    """Interface to control all other functions.
+
+    Serves as the main entry-point to the program. It presents a welcome message,
+    provides instructions on how to quit, and enters loop where it generates passwords
+    and prompts the user to generate another. The loop continues until the user chooses
+    to quit the program.
+    """
+
     print("\nHello, and welcome to the Password Generator! 🔑")
     print(
         f">>> To quit at any point, type: {", ".join(f'"{command}"' for command in QUIT_COMMANDS)}"
