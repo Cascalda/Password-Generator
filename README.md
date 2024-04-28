@@ -1,4 +1,4 @@
-## CS50 Final Project: Password Generator
+# CS50 Final Project: Password Generator
 
 ### Description
 A simple terminal-based password generator that gives you a fair bit of customisation. You can also make a passphrase with this one.
@@ -6,23 +6,23 @@ A simple terminal-based password generator that gives you a fair bit of customis
 ### Getting Started
 To get started, run [`project.py`](project.py)
 
-## Contains
-#### [**Interface**](project.py)
+# Contains
+### [**Interface**](project.py)
 Where you can call the password generators, to provide a password/passphrase for your use.
 
 > **`main()` function**
 - Contains a welcome and farewell message. A while loop that gets and provides your password, with another prompt to end the program after generation, or to end it prematurely.
 
-#### [**Constants**](constants.py)
+### [**Constants**](constants.py)
 - Contains all the `CONSTANTS` that I've factored out to use across multiple files.
 
-#### [**Exceptions**](exceptions.py)
+### [**Exceptions**](exceptions.py)
 - `QuitCommand`, meant to signal that the user wants to quit the program.
 - `InvalidInputError`, meant to signal that an input has an invalid value.
     - `InvalidLengthError`, meant to signal that an input has an invalid length.
     - `InvalidTypeError`, meant to signal that an input has an invalid type.
 
-#### [**Password Generator**](password_generation.py)
+### [**Password Generator**](password_generation.py)
 Functions grouped according to their categories.
 
 > **Helper functions**
@@ -42,7 +42,7 @@ Functions grouped according to their categories.
 > **Entry Point**
 - Contains `main()` that runs only if we are running the library itself. Right now it is the same as `main()` in [`password_generator.py`](password_generation.py).
 
-#### [**Tests**](test_password_generation.py)
+### [**Tests**](test_password_generation.py)
 - Contains some tests, not fully comprehensive as I do not know how to test password generation.
 - Therefore it only contains length validation checks
 - Uses pytest with parametrisation
