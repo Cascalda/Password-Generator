@@ -191,9 +191,7 @@ def get_access_key() -> str:
 
     while True:
         # Prompt "password" instead of "access key" as "password" is more colloquial
-        # flag = my_input("\nPassword or Passphrase: ").lower()
-        flag = my_input("\nPassword or Passphrase: ")
-        print("flag: ", flag)
+        flag = my_input("\nPassword or Passphrase: ").lower()
         match = {
             "p": generate_password,
             "ph": generate_passphrase,
