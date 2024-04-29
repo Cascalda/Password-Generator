@@ -16,7 +16,9 @@ def main():
 
     print("\nHello, and welcome to the Password Generator! 🔑")
     print(
-        f">>> To quit at any point, type: {", ".join(f'"{command}"' for command in QUIT_COMMANDS)}"
+        f">>> To quit at any point, type: {", ".join(
+            f'"{command}"' for command in QUIT_COMMANDS
+            )}"
     )
     print()
 
