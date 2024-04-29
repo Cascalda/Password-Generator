@@ -4,7 +4,8 @@ import string
 
 from english_words import get_english_words_set
 
-QUIT_COMMANDS = ["quit", "q", "exit", "e"]
+
+QUIT_COMMANDS: list[str] = ["quit", "q", "exit", "e"]
 
 
 MIN_LENGTH: int = 6
