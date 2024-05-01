@@ -37,4 +37,4 @@ CHARACTERS = {
     "special characters": string.punctuation,
 }
 
-WORDS = sorted(get_english_words_set(sources=["web2"]))
+WORDS = tuple(sorted(get_english_words_set(sources=["web2"])))
